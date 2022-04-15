@@ -424,21 +424,76 @@ screens = [
                     padding = -4,
                 ),
                 widget.TextBox(
+                    text = "",
+                    font = "FontAwesome",
+                    fontsize = 20,
+                    padding = 10,
+                    background = colors[1],
+                ),
+                widget.CryptoTicker(
+                    font = "Ubuntu Bold",
+                    background = colors[1],
+                    padding = 2,
+                    fontsize = 14,
+                    format = '{symbol}{amount:.2f}'
+                ),
+                
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 10,
+                    background = colors[1],
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[0],
+                    background = colors[1],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
                     text = "墳",
                     font = "FontAwesome",
                     fontsize = 16,
                     padding = 8,
-                    background = colors[1],
+                    background = colors[0],
                 ),
                 widget.PulseVolume(
                     font = "Ubuntu Bold",
-                    background = colors[1],
+                    background = colors[0],
                     padding = 0,
                     device = 'ALC236 Analog'
                 ),
+                
                 widget.Sep(
                     linewidth = 0,
+                    padding = 6,
+                    background = colors[0],
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[1],
+                    background = colors[0],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
                     padding = 10,
+                    fontsize = 20,
+                    background = colors[1],
+                ),
+                widget.DF(
+                    font = "Ubuntu Bold",
+                    visible_on_warn = False,
+                    format = '{uf}{m} - {r:.0f}%',
+                    background = colors[1],
+                ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
                     background = colors[1],
                 ),
                 widget.TextBox(
@@ -466,59 +521,7 @@ screens = [
                 ),
                 widget.Sep(
                     linewidth = 0,
-                    padding = 6,
-                    background = colors[0],
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
                     padding = 10,
-                    fontsize = 20,
-                    background = colors[1],
-                ),
-                widget.DF(
-                    font = "Ubuntu Bold",
-                    visible_on_warn = False,
-                    format = '{uf}{m} - {r:.0f}%',
-                    background = colors[1],
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    background = colors[1],
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    text = "",
-                    font = "FontAwesome",
-                    fontsize = 20,
-                    padding = 6,
-                    background = colors[0],
-                ),
-                widget.CPU(
-                    font = "Ubuntu Bold",
-                    background = colors[0],
-                    padding = 2,
-                    format = "{load_percent}%",
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
                     background = colors[0],
                 ),
 
@@ -544,7 +547,7 @@ screens = [
                     foreground = colors[2],
                     background = colors[1],
                     update_interval = 60,
-                    format = '{percent:2.0%}  ',  
+                    format = '{percent:2.0%}  ',
                 ),
                 widget.TextBox(
                     text = '',
@@ -568,13 +571,8 @@ screens = [
                     background = colors[0],
                     foreground = colors[2],
                     padding=6,
-                    
                 ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    background = colors[0],
-                ),
+
             ],
             24,
         ),
