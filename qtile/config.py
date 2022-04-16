@@ -56,10 +56,13 @@ keys = [
     Key([mod], "w", lazy.spawn('firefox'), desc="Launch Firefox"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "d", lazy.spawn('rofi -show drun'), desc="Launch Rofi"),
-    Key([alt], "Tab", lazy.spawn('rofi -show window'), desc="See Open Apps"),
     Key([mod], "n", lazy.spawn('Thunar'), desc="Launch Thunar"),
     Key([mod], "p", lazy.spawn('flameshot gui'), desc="Take Screenshot"),
 
+    # Rofi shortcuts
+    Key([alt], "Tab", lazy.spawn('rofi -show window'), desc="See Open Apps"),
+    Key([alt], "e", lazy.spawn('rofi -show emoji'), desc="Emoji Selector"),
+    Key([alt], "c", lazy.spawn('rofi -show calc -no-show-match -no-sort'), desc="Calculator"),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -196,6 +199,16 @@ screens = [
                     background = colors[0],
                     padding=0,
                 ),
+                widget.Cmus(
+                    font = "Ubuntu Bold",
+                    fontsize = "14",
+                    foreground = colors[2],
+                    background = colors[0],
+                    padding = 12,
+                    play_color = colors[2],
+                    noplay_color = colors[6],
+                    update_interval = 0.1,
+                    ),
                 widget.TextBox(
                     text = '',
                     font = "FontAwesome",
@@ -421,6 +434,16 @@ screens = [
                     font="Ubuntu Bold",
                     background = colors[0],
                     padding=0,
+                ),
+                widget.Cmus(
+                    font = "Ubuntu Bold",
+                    fontsize = "14",
+                    foreground = colors[2],
+                    background = colors[0],
+                    padding = 12,
+                    play_color = colors[2],
+                    noplay_color = colors[6],
+                    update_interval = 0.1,
                 ),
                 widget.TextBox(
                     text = '',
