@@ -14,6 +14,7 @@ colors = ['#1793D1',
           '#57585b']
 
 mod = "mod4"
+alt = "mod1"
 terminal = guess_terminal()
 
 keys = [
@@ -55,6 +56,7 @@ keys = [
     Key([mod], "w", lazy.spawn('firefox'), desc="Launch Firefox"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "d", lazy.spawn('rofi -show drun'), desc="Launch Rofi"),
+    Key([alt], "Tab", lazy.spawn('rofi -show window'), desc="See Open Apps"),
     Key([mod], "n", lazy.spawn('Thunar'), desc="Launch Thunar"),
     Key([mod], "p", lazy.spawn('flameshot gui'), desc="Take Screenshot"),
 
