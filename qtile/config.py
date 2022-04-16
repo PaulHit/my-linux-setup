@@ -5,12 +5,12 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-colors = ['#1793D1',
+colors = ['#2d0ecc',
           '#30343F',    # Gray Background Bar
           '#ffffff',
           '#000000',
           '#607fc4',
-          '#8E44AD',
+          '#1793D1',
           '#57585b']
 
 mod = "mod4"
@@ -125,7 +125,7 @@ for i in groups:
 
 layout_theme = {
     "border_width": 2,
-    "margin": 4,
+    "margin": 6,
     "border_focus": colors[4],
     "border_normal": colors[1]
 }
@@ -166,7 +166,7 @@ screens = [
                     font = "FontAwesome",
                     fontsize = "20",
                     background = colors[1],
-                    foreground = colors[0],
+                    foreground = colors[5],
                     mouse_callbacks = {'Button1': lazy.spawn(terminal)}
                 ),
                 
@@ -177,9 +177,8 @@ screens = [
                     margin_x = 0,
                     padding_x = 6,
                     background = colors[1],
-                    foreground = colors[0],
                     disable_drag = True,
-                    this_current_screen_border = colors[0],
+                    this_current_screen_border = colors[5],
                     inactive = colors[6],
                     active   = colors[2],
                 ),
@@ -393,7 +392,7 @@ screens = [
                     font = "FontAwesome",
                     fontsize = "20",
                     background = colors[1],
-                    foreground = colors[0],
+                    foreground = colors[5],
                     mouse_callbacks = {'Button1': lazy.spawn(terminal)}
                 ),
                 
@@ -404,9 +403,8 @@ screens = [
                     margin_x = 0,
                     padding_x = 6,
                     background = colors[1],
-                    foreground = colors[0],
                     disable_drag = True,
-                    this_current_screen_border = colors[0],
+                    this_current_screen_border = colors[5],
                     inactive = colors[6],
                     active   = colors[2],
                 ),
