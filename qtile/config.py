@@ -155,6 +155,15 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+def unicode_arrow_widget(primary, secondary):
+    return widget.TextBox(
+               text = '',
+               background = colors[primary],
+               foreground = colors[secondary],
+               padding = -7,
+               fontsize = 46,
+           )
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -175,6 +184,7 @@ screens = [
                 
                 widget.GroupBox(
                     font="Ubuntu Bold",
+                    fontsize = 14,
                     highlight_method="text",
                     margin_y = 3,
                     margin_x = 0,
@@ -185,19 +195,13 @@ screens = [
                     inactive = colors[6],
                     active   = colors[2],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.WindowName(
                     foreground= colors[2],
                     font="Ubuntu Bold",
                     background = colors[0],
-                    padding=0,
+                    padding = 0,
+                    fontsize = 14,
                 ),
                 widget.Cmus(
                     font = "Ubuntu Bold",
@@ -209,14 +213,7 @@ screens = [
                     noplay_color = colors[6],
                     update_interval = 0.1,
                     ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(0, 1),
                 widget.TextBox(
                     text = "",
                     font = "FontAwesome",
@@ -238,14 +235,7 @@ screens = [
                     padding = 10,
                     background = colors[1],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.TextBox(
                     text = "墳",
                     font = "FontAwesome",
@@ -258,7 +248,8 @@ screens = [
                     font = "Ubuntu Bold",
                     background = colors[0],
                     padding = 0,
-                    device = 'ALC236 Analog'
+                    device = 'ALC236 Analog',
+                    fontsize = 14,
                 ),
                 
                 widget.Sep(
@@ -266,14 +257,7 @@ screens = [
                     padding = 6,
                     background = colors[0],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(0, 1),
                 widget.TextBox(
                     text = '',
                     font = "FontAwesome",
@@ -287,20 +271,14 @@ screens = [
                     visible_on_warn = False,
                     format = '{uf}{m} - {r:.0f}%',
                     background = colors[1],
+                    fontsize = 14,
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     background = colors[1],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.TextBox(
                     text = "",
                     font = "FontAwesome",
@@ -322,16 +300,7 @@ screens = [
                     padding = 10,
                     background = colors[0],
                 ),
-
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-
+                unicode_arrow_widget(0, 1),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
@@ -346,15 +315,9 @@ screens = [
                     background = colors[1],
                     update_interval = 60,
                     format = '{percent:2.0%}  ',
+                    fontsize = 14
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
@@ -370,15 +333,9 @@ screens = [
                     background = colors[0],
                     foreground = colors[2],
                     padding=6,
+                    fontsize = 14,
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(0, 1),
                 widget.Systray(
                     background = colors[1],
                     padding=6
@@ -411,6 +368,7 @@ screens = [
                 
                 widget.GroupBox(
                     font="Ubuntu Bold",
+                    fontsize = 14,
                     highlight_method="text",
                     margin_y = 3,
                     margin_x = 0,
@@ -421,19 +379,13 @@ screens = [
                     inactive = colors[6],
                     active   = colors[2],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.WindowName(
                     foreground= colors[2],
                     font="Ubuntu Bold",
                     background = colors[0],
-                    padding=0,
+                    padding = 0,
+                    fontsize = 14,
                 ),
                 widget.Cmus(
                     font = "Ubuntu Bold",
@@ -444,15 +396,8 @@ screens = [
                     play_color = colors[2],
                     noplay_color = colors[6],
                     update_interval = 0.1,
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                    ),
+                unicode_arrow_widget(0, 1),
                 widget.TextBox(
                     text = "",
                     font = "FontAwesome",
@@ -474,14 +419,7 @@ screens = [
                     padding = 10,
                     background = colors[1],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.TextBox(
                     text = "墳",
                     font = "FontAwesome",
@@ -494,7 +432,8 @@ screens = [
                     font = "Ubuntu Bold",
                     background = colors[0],
                     padding = 0,
-                    device = 'ALC236 Analog'
+                    device = 'ALC236 Analog',
+                    fontsize = 14,
                 ),
                 
                 widget.Sep(
@@ -502,14 +441,7 @@ screens = [
                     padding = 6,
                     background = colors[0],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(0, 1),
                 widget.TextBox(
                     text = '',
                     font = "FontAwesome",
@@ -523,20 +455,14 @@ screens = [
                     visible_on_warn = False,
                     format = '{uf}{m} - {r:.0f}%',
                     background = colors[1],
+                    fontsize = 14,
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     background = colors[1],
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.TextBox(
                     text = "",
                     font = "FontAwesome",
@@ -558,16 +484,7 @@ screens = [
                     padding = 10,
                     background = colors[0],
                 ),
-
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-
+                unicode_arrow_widget(0, 1),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
@@ -582,15 +499,9 @@ screens = [
                     background = colors[1],
                     update_interval = 60,
                     format = '{percent:2.0%}  ',
+                    fontsize = 14
                 ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
+                unicode_arrow_widget(1, 0),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
@@ -606,6 +517,7 @@ screens = [
                     background = colors[0],
                     foreground = colors[2],
                     padding=6,
+                    fontsize = 14,
                 ),
                 widget.Sep(
                     linewidth = 0,
