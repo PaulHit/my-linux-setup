@@ -11,9 +11,10 @@ colors = ['#1793D1',
           '#000000',
           '#607fc4',
           '#8E44AD',
-          '#ffb86c']
+          '#57585b']
 
 mod = "mod4"
+alt = "mod1"
 terminal = guess_terminal()
 
 keys = [
@@ -55,6 +56,7 @@ keys = [
     Key([mod], "w", lazy.spawn('firefox'), desc="Launch Firefox"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "d", lazy.spawn('rofi -show drun'), desc="Launch Rofi"),
+    Key([alt], "Tab", lazy.spawn('rofi -show window'), desc="See Open Apps"),
     Key([mod], "n", lazy.spawn('Thunar'), desc="Launch Thunar"),
     Key([mod], "p", lazy.spawn('flameshot gui'), desc="Take Screenshot"),
 
@@ -165,6 +167,7 @@ screens = [
                     fontsize = "20",
                     background = colors[1],
                     foreground = colors[0],
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal)}
                 ),
                 
                 widget.GroupBox(
@@ -176,9 +179,9 @@ screens = [
                     background = colors[1],
                     foreground = colors[0],
                     disable_drag = True,
-                    this_current_screen_border = colors[2],
-                    inactive = colors[0],
-                    active = colors[5],
+                    this_current_screen_border = colors[0],
+                    inactive = colors[6],
+                    active   = colors[2],
                 ),
                 widget.TextBox(
                     text = '',
@@ -208,6 +211,7 @@ screens = [
                     fontsize = 20,
                     padding = 10,
                     background = colors[1],
+                    mouse_callbacks = {'Button1': lazy.spawn('firefox   crypto.com/price')}
                 ),
                 widget.CryptoTicker(
                     font = "Ubuntu Bold",
@@ -236,6 +240,7 @@ screens = [
                     fontsize = 16,
                     padding = 8,
                     background = colors[0],
+                    mouse_callbacks = {'Button1': lazy.spawn('pavucontrol')}
                 ),
                 widget.PulseVolume(
                     font = "Ubuntu Bold",
@@ -263,6 +268,7 @@ screens = [
                     padding = 10,
                     fontsize = 20,
                     background = colors[1],
+                    mouse_callbacks = {'Button1': lazy.spawn('Thunar')}
                 ),
                 widget.DF(
                     font = "Ubuntu Bold",
@@ -289,227 +295,7 @@ screens = [
                     fontsize = 20,
                     padding = 10,
                     background = colors[0],
-                ),
-                widget.OpenWeather(
-                    font = "Ubuntu Bold",
-                    cityid = 685204,
-                    format = '{main_temp} °{units_temperature}',
-                    update_interval = "600",
-                    background = colors[0],
-                    fontsize = 14
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    background = colors[0],
-                ),
-
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-
-                widget.TextBox(
-                    font = "FontAwesome",
-                    text = "",
-                    foreground = colors[2],
-                    background = colors[1],
-                    padding = 6,
-                    fontsize = 14,
-                ),
-                widget.Battery(
-                    font = "Ubuntu Bold",
-                    foreground = colors[2],
-                    background = colors[1],
-                    update_interval = 60,
-                    format = '{percent:2.0%}  ',  
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    font = "FontAwesome",
-                    text = "",
-                    foreground = colors[2],
-                    background = colors[0],
-                    padding = 6,
-                    fontsize = 20,
-                ),
-                widget.Clock(
-                    font = "Ubuntu Bold",
-                    format="%A, %B %d - %H:%M:%S ",
-                    background = colors[0],
-                    foreground = colors[2],
-                    padding=6,
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.Systray(
-                    background = colors[1],
-                    padding=6
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 12,
-                    background = colors[1],
-                ),
-            ],
-            24,
-        ),
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    background = colors[1],
-                ),
-                widget.TextBox(
-                    text = " ",
-                    font = "FontAwesome",
-                    fontsize = "20",
-                    background = colors[1],
-                    foreground = colors[0],
-                ),
-                
-                widget.GroupBox(
-                    font="Ubuntu Bold",
-                    highlight_method="text",
-                    margin_y = 3,
-                    margin_x = 0,
-                    padding_x = 6,
-                    background = colors[1],
-                    foreground = colors[0],
-                    disable_drag = True,
-                    this_current_screen_border = colors[2],
-                    inactive = colors[0],
-                    active = colors[5],
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.WindowName(
-                    foreground= colors[2],
-                    font="Ubuntu Bold",
-                    background = colors[0],
-                    padding=0,
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    text = "",
-                    font = "FontAwesome",
-                    fontsize = 20,
-                    padding = 10,
-                    background = colors[1],
-                ),
-                widget.CryptoTicker(
-                    font = "Ubuntu Bold",
-                    background = colors[1],
-                    padding = 2,
-                    fontsize = 14,
-                    format = '{symbol}{amount:.2f}'
-                ),
-                
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 10,
-                    background = colors[1],
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    text = "墳",
-                    font = "FontAwesome",
-                    fontsize = 16,
-                    padding = 8,
-                    background = colors[0],
-                ),
-                widget.PulseVolume(
-                    font = "Ubuntu Bold",
-                    background = colors[0],
-                    padding = 0,
-                    device = 'ALC236 Analog'
-                ),
-                
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    background = colors[0],
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[1],
-                    background = colors[0],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    padding = 10,
-                    fontsize = 20,
-                    background = colors[1],
-                ),
-                widget.DF(
-                    font = "Ubuntu Bold",
-                    visible_on_warn = False,
-                    format = '{uf}{m} - {r:.0f}%',
-                    background = colors[1],
-                ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    background = colors[1],
-                ),
-                widget.TextBox(
-                    text = '',
-                    font = "FontAwesome",
-                    foreground = colors[0],
-                    background = colors[1],
-                    fontsize = 34,
-                    padding = -4,
-                ),
-                widget.TextBox(
-                    text = "",
-                    font = "FontAwesome",
-                    fontsize = 20,
-                    padding = 10,
-                    background = colors[0],
+                    mouse_callbacks = {'Button1': lazy.spawn('firefox   https://www.accuweather.com/en/ro/beclean/272299/current-weather/272299')}
                 ),
                 widget.OpenWeather(
                     font = "Ubuntu Bold",
@@ -563,7 +349,8 @@ screens = [
                     foreground = colors[2],
                     background = colors[0],
                     padding = 6,
-                    fontsize = 20,
+                    fontsize = 20,                    
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e calcure')}
                 ),
                 widget.Clock(
                     font = "Ubuntu Bold",
@@ -572,7 +359,238 @@ screens = [
                     foreground = colors[2],
                     padding=6,
                 ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[1],
+                    background = colors[0],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.Systray(
+                    background = colors[1],
+                    padding=6
+                ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 12,
+                    background = colors[1],
+                ),
+            ],
+            24,
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    background = colors[1],
+                ),
+                widget.TextBox(
+                    text = " ",
+                    font = "FontAwesome",
+                    fontsize = "20",
+                    background = colors[1],
+                    foreground = colors[0],
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal)}
+                ),
+                
+                widget.GroupBox(
+                    font="Ubuntu Bold",
+                    highlight_method="text",
+                    margin_y = 3,
+                    margin_x = 0,
+                    padding_x = 6,
+                    background = colors[1],
+                    foreground = colors[0],
+                    disable_drag = True,
+                    this_current_screen_border = colors[0],
+                    inactive = colors[6],
+                    active   = colors[2],
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[0],
+                    background = colors[1],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.WindowName(
+                    foreground= colors[2],
+                    font="Ubuntu Bold",
+                    background = colors[0],
+                    padding=0,
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[1],
+                    background = colors[0],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
+                    text = "",
+                    font = "FontAwesome",
+                    fontsize = 20,
+                    padding = 10,
+                    background = colors[1],
+                    mouse_callbacks = {'Button1': lazy.spawn('firefox   crypto.com/price')}
+                ),
+                widget.CryptoTicker(
+                    font = "Ubuntu Bold",
+                    background = colors[1],
+                    padding = 2,
+                    fontsize = 14,
+                    format = '{symbol}{amount:.2f}'
+                ),
+                
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 10,
+                    background = colors[1],
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[0],
+                    background = colors[1],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
+                    text = "墳",
+                    font = "FontAwesome",
+                    fontsize = 16,
+                    padding = 8,
+                    background = colors[0],
+                    mouse_callbacks = {'Button1': lazy.spawn('pavucontrol')}
+                ),
+                widget.PulseVolume(
+                    font = "Ubuntu Bold",
+                    background = colors[0],
+                    padding = 0,
+                    device = 'ALC236 Analog'
+                ),
+                
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    background = colors[0],
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[1],
+                    background = colors[0],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    padding = 10,
+                    fontsize = 20,
+                    background = colors[1],
+                    mouse_callbacks = {'Button1': lazy.spawn('Thunar')}
+                ),
+                widget.DF(
+                    font = "Ubuntu Bold",
+                    visible_on_warn = False,
+                    format = '{uf}{m} - {r:.0f}%',
+                    background = colors[1],
+                ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    background = colors[1],
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[0],
+                    background = colors[1],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
+                    text = "",
+                    font = "FontAwesome",
+                    fontsize = 20,
+                    padding = 10,
+                    background = colors[0],
+                    mouse_callbacks = {'Button1': lazy.spawn('firefox   https://www.accuweather.com/en/ro/beclean/272299/current-weather/272299')}
+                ),
+                widget.OpenWeather(
+                    font = "Ubuntu Bold",
+                    cityid = 685204,
+                    format = '{main_temp} °{units_temperature}',
+                    update_interval = "600",
+                    background = colors[0],
+                    fontsize = 14
+                ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 10,
+                    background = colors[0],
+                ),
 
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[1],
+                    background = colors[0],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+
+                widget.TextBox(
+                    font = "FontAwesome",
+                    text = "",
+                    foreground = colors[2],
+                    background = colors[1],
+                    padding = 6,
+                    fontsize = 14,
+                ),
+                widget.Battery(
+                    font = "Ubuntu Bold",
+                    foreground = colors[2],
+                    background = colors[1],
+                    update_interval = 60,
+                    format = '{percent:2.0%}  ',
+                ),
+                widget.TextBox(
+                    text = '',
+                    font = "FontAwesome",
+                    foreground = colors[0],
+                    background = colors[1],
+                    fontsize = 34,
+                    padding = -4,
+                ),
+                widget.TextBox(
+                    font = "FontAwesome",
+                    text = "",
+                    foreground = colors[2],
+                    background = colors[0],
+                    padding = 6,
+                    fontsize = 20,                    
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e calcure')}
+                ),
+                widget.Clock(
+                    font = "Ubuntu Bold",
+                    format="%A, %B %d - %H:%M:%S ",
+                    background = colors[0],
+                    foreground = colors[2],
+                    padding=6,
+                ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 12,
+                    background = colors[0],
+                ),
             ],
             24,
         ),
@@ -590,7 +608,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = True
+cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
