@@ -57,7 +57,8 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "d", lazy.spawn('rofi -show drun'), desc="Launch Rofi"),
     Key([mod], "n", lazy.spawn('Thunar'), desc="Launch Thunar"),
-    Key([mod], "p", lazy.spawn('flameshot gui'), desc="Take Screenshot"),
+    Key([mod], "p", lazy.spawn('flameshot gui'), desc="Screenshot"),
+    Key([mod, "shift"], "p", lazy.spawn('flameshot full'), desc="Take Fullscreen Screenshot"),
 
     # Rofi shortcuts
     Key([alt], "Tab", lazy.spawn('rofi -show window'), desc="See Open Apps"),
@@ -65,7 +66,8 @@ keys = [
     Key([alt], "c", lazy.spawn('rofi -show calc -no-show-match -no-sort'), desc="Calculator"),
 
     # Picom shortcuts
-    # Key([alt], "", lazy.spawn('rofi -show calc -no-show-match -no-sort'), desc="Calculator"),
+    Key([alt], "p", lazy.spawn('picom -b'), desc="Launch picom"),
+    Key([alt, "shift"], "p", lazy.spawn('killall picom'), desc="Kill picom"),
 
 
     # Toggle between different layouts as defined below
@@ -160,7 +162,7 @@ layouts = [
         border_on_single = True,
         margin_on_single = 6,
         ),
-    # layout.Max(**layout_theme),
+    layout.Max(**layout_theme),
 ]
 
 widget_defaults = dict(
@@ -230,19 +232,19 @@ screens = [
                     ),
                 unicode_arrow_widget(0, 1),
                 widget.TextBox(
-                    text = "",
+                    text = "舘",
                     font = "FontAwesome",
                     fontsize = 20,
                     padding = 10,
                     background = colors[1],
-                    mouse_callbacks = {'Button1': lazy.spawn('firefox   crypto.com/price')}
+                    mouse_callbacks = {'Button1': lazy.next_layout()}
                 ),
-                widget.CryptoTicker(
+                widget.CurrentLayout(
                     font = "Ubuntu Bold",
                     background = colors[1],
                     padding = 2,
                     fontsize = 14,
-                    format = '{symbol}{amount:.2f}'
+
                 ),
                 
                 widget.Sep(
