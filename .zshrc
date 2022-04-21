@@ -79,7 +79,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
+#	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	sudo
@@ -117,23 +117,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias c="clear"
-alias update="sudo pacman -Syu && paru -Syu --noconfirm"
+alias update="sudo pacman -Syu && yay -Syu"
 alias open="thunar"
 alias ls="lsd"
 alias e="exit"
 alias p="picom"
-alias i3config="nano ~/.config/i3/config"
-alias zshconfig="nano ~/.zshrc"
-alias picomconfig="nano ~/.config/picom/picom.conf"
+alias qtileconfig="vim ~/.config/qtile/config.py"
+alias zshconfig="vim ~/.zshrc"
+alias picomconfig="vim ~/.config/picom/picom.conf"
 alias files="ranger"
 alias disks="ncdu"
 alias wifi="nmtui"
 alias music="cmus"
 alias keyboard="setxkbmap"
 alias userChrome="cd ~/.mozilla/firefox/perbx9nn.default-release"
-alias paruinstall="paru S --noconfirm"
-alias paruupdate="paru Syu --noconfirm"
 alias reload="exec zsh"
+alias checkconfig="python3 ~/.config/qtile/config.py"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /home/paul/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
