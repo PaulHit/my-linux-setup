@@ -1,2 +1,4 @@
 # my-linux-setup
-![Not too much but it's honest work](https://https://github.com/PaulHit/my-linux-setup/blob/main/screenshots/2022-04-23_21-06.png?raw=true)
+![](screenshots/2022-04-23_21-06.png)
+
+![](screenshots/2022-04-23-205708_3840x1080_scro23123t.png)
