@@ -5,43 +5,65 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-colors = ['#2d0ecc',    # Purple
-          '#30343F',    # Gray Background Bar
-          '#ffffff',    # White
-          '#000000',    # Black
-          '#607fc4',    # Purplish Blue
-          '#1793D1',    # Arch Blue
-          '#57585b']    # Gray again
+colors = ['#282828',    # bg (The same as bg0)
+          '#cc241d',    # RedD
+          '#fb4934',    # RedL
+          '#98971a',    # GreenD
+          '#b8bb26',    # GreenL
+          '#d65d0e',    # grayD
+          '#fe8019',    # grayL
+          '#d79921',    # YellowD
+          '#fabd2f',    # YellowL
+          '#458588',    # BlueD
+          '#83a598',    # BlueL
+          '#b16286',    # PurpleD
+          '#d3869b',    # PurpleL
+          '#689d6a',    # AquaD
+          '#8ec07c',    # AquaL
+          '#a89984',    # GrayD
+          '#ebdbb2',    # fg (The same as fg1)
+          '#1d2021',    # bg0_h
+          '#3c3836',    # bg1
+          '#504945',    # bg2
+          '#665c54',    # bg3
+          '#7c6f64',    # bg4
+          '#928374',    # gray
+          '#32302f',    # bg0_s
+          '#a89984',    # fg4
+          '#bdae93',    # fg3
+          '#d5c4a1',    # fg2
+          '#d5c4a1',    # fg1
+          '#fbf1c7']    # fg0
 
 mod = "mod4"
 alt = "mod1"
-terminal = guess_terminal()
+terminal = "alacritty"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Switch between monitors
     Key([mod], "comma", lazy.to_screen(0)),
     Key([mod], "period", lazy.to_screen(1)),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
-    # Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -75,6 +97,7 @@ keys = [
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "s", lazy.spawn('sudo poweroff'), desc="Shutdown System"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Media control
@@ -141,8 +164,8 @@ for i in groups:
 layout_theme = {
     "border_width": 2,
     "margin": 6,
-    "border_focus": colors[4],
-    "border_normal": colors[1]
+    "border_focus": colors[9],
+    "border_normal": colors[6]
 }
 
 layouts = [
@@ -161,6 +184,7 @@ layouts = [
         **layout_theme,
         border_on_single = True,
         margin_on_single = 6,
+        grow_amount = 5,
         ),
     layout.Max(**layout_theme),
 ]
@@ -177,7 +201,7 @@ def unicode_arrow_widget(primary, secondary):
                text = '',
                background = colors[primary],
                foreground = colors[secondary],
-               padding = -7,
+               padding = -6.5,
                fontsize = 46,
            )
 
@@ -188,14 +212,14 @@ screens = [
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    background = colors[1],
+                    background = colors[17],
                 ),
                 widget.TextBox(
                     text = " ",
                     font = "FontAwesome",
                     fontsize = "20",
-                    background = colors[1],
-                    foreground = colors[5],
+                    background = colors[17],
+                    foreground = colors[9],
                     mouse_callbacks = {'Button1': lazy.spawn(terminal)}
                 ),
                 
@@ -206,64 +230,67 @@ screens = [
                     margin_y = 3,
                     margin_x = 0,
                     padding_x = 6,
-                    background = colors[1],
+                    background = colors[17],
                     disable_drag = True,
-                    this_current_screen_border = colors[5],
-                    inactive = colors[6],
-                    active   = colors[2],
+                    this_current_screen_border = colors[9],
+                    inactive = colors[20],
+                    active   = colors[28],
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(17, 18),
                 widget.WindowName(
-                    foreground= colors[2],
+                    foreground = colors[27],
                     font="Ubuntu Bold",
-                    background = colors[0],
-                    padding = 0,
-                    fontsize = 14,
+                    background = colors[18],
+                    padding = 2,
+                    fontsize = 12,
                 ),
                 widget.Cmus(
                     font = "Ubuntu Bold",
                     fontsize = "14",
-                    foreground = colors[2],
-                    background = colors[0],
+                    foreground = colors[28],
+                    background = colors[18],
                     padding = 12,
                     play_color = colors[2],
                     noplay_color = colors[6],
                     update_interval = 0.1,
                     ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(18, 19),
+                widget.CurrentLayout(
+                    font = "Ubuntu Bold",
+                    background = colors[19],
+                    foreground = colors[27],
+                    padding = 2,
+                    fontsize = 14,
+                ),
                 widget.TextBox(
                     text = "舘",
                     font = "FontAwesome",
                     fontsize = 20,
                     padding = 10,
-                    background = colors[1],
-                    mouse_callbacks = {'Button1': lazy.next_layout()}
-                ),
-                widget.CurrentLayout(
-                    font = "Ubuntu Bold",
-                    background = colors[1],
-                    padding = 2,
-                    fontsize = 14,
-
+                    background = colors[19],
+                    mouse_callbacks = {'Button1': lazy.next_layout()},
+                    foreground = colors[27],
                 ),
                 
                 widget.Sep(
                     linewidth = 0,
                     padding = 10,
-                    background = colors[1],
+                    background = colors[19],
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(19, 17),
                 widget.TextBox(
                     text = "墳",
                     font = "FontAwesome",
                     fontsize = 16,
                     padding = 8,
-                    background = colors[0],
+                    background = colors[17],
+                    foreground = colors[27],
                     mouse_callbacks = {'Button1': lazy.spawn('pavucontrol')}
                 ),
                 widget.PulseVolume(
                     font = "Ubuntu Bold",
-                    background = colors[0],
+                    background = colors[17],
+                    foreground = colors[27],
                     padding = 0,
                     device = 'ALC236 Analog',
                     fontsize = 14,
@@ -272,36 +299,39 @@ screens = [
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    background = colors[0],
+                    background = colors[17],
                 ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(17, 23),
                 widget.TextBox(
                     text = '',
                     font = "FontAwesome",
                     padding = 10,
                     fontsize = 20,
-                    background = colors[1],
+                    background = colors[23],
+                    foreground = colors[27],
                     mouse_callbacks = {'Button1': lazy.spawn('Thunar')}
                 ),
                 widget.DF(
                     font = "Ubuntu Bold",
                     visible_on_warn = False,
                     format = '{uf}{m} - {r:.0f}%',
-                    background = colors[1],
+                    background = colors[23],
+                    foreground = colors[27],
                     fontsize = 14,
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    background = colors[1],
+                    background = colors[23],
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(23, 20),
                 widget.TextBox(
                     text = "",
                     font = "FontAwesome",
                     fontsize = 20,
                     padding = 10,
-                    background = colors[0],
+                    background = colors[20],
+                    foreground = colors[27],
                     mouse_callbacks = {'Button1': lazy.spawn('firefox   https://www.accuweather.com/en/ro/beclean/272299/current-weather/272299')}
                 ),
                 widget.OpenWeather(
@@ -309,36 +339,37 @@ screens = [
                     cityid = 685204,
                     format = '{main_temp} °{units_temperature}',
                     update_interval = "600",
-                    background = colors[0],
+                    background = colors[20],
+                    foreground = colors[27],
                     fontsize = 14
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 10,
-                    background = colors[0],
+                    background = colors[20],
                 ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(20, 18),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
-                    foreground = colors[2],
-                    background = colors[1],
+                    foreground = colors[27],
+                    background = colors[18],
                     padding = 6,
                     fontsize = 14,
                 ),
                 widget.Battery(
                     font = "Ubuntu Bold",
-                    foreground = colors[2],
-                    background = colors[1],
+                    foreground = colors[27],
+                    background = colors[18],
                     update_interval = 60,
                     format = '{percent:2.0%}  ',
                     fontsize = 14
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(18, 0),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
-                    foreground = colors[2],
+                    foreground = colors[27],
                     background = colors[0],
                     padding = 6,
                     fontsize = 20,                    
@@ -348,19 +379,28 @@ screens = [
                     font = "Ubuntu Bold",
                     format="%A, %B %d - %H:%M:%S ",
                     background = colors[0],
-                    foreground = colors[2],
+                    foreground = colors[27],
                     padding=6,
                     fontsize = 14,
                 ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(0, 17),
                 widget.Systray(
-                    background = colors[1],
-                    padding=6
+                    background = colors[17],
+                    padding=6,
+                ),
+                widget.QuickExit(
+                    fontsize = 14,
+                    font = "FontAwesome",
+                    default_text = "",
+                    background = colors[17],
+                    foreground = 'ffffff',
+                    padding=12,
+                    countdown_format = '[ {} ]'
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 12,
-                    background = colors[1],
+                    background = colors[17],
                 ),
             ],
             24,
@@ -372,14 +412,14 @@ screens = [
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    background = colors[1],
+                    background = colors[17],
                 ),
                 widget.TextBox(
                     text = " ",
                     font = "FontAwesome",
                     fontsize = "20",
-                    background = colors[1],
-                    foreground = colors[5],
+                    background = colors[17],
+                    foreground = colors[9],
                     mouse_callbacks = {'Button1': lazy.spawn(terminal)}
                 ),
                 
@@ -390,64 +430,67 @@ screens = [
                     margin_y = 3,
                     margin_x = 0,
                     padding_x = 6,
-                    background = colors[1],
+                    background = colors[17],
                     disable_drag = True,
-                    this_current_screen_border = colors[5],
-                    inactive = colors[6],
-                    active   = colors[2],
+                    this_current_screen_border = colors[9],
+                    inactive = colors[20],
+                    active   = colors[28],
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(17, 18),
                 widget.WindowName(
-                    foreground= colors[2],
+                    foreground = colors[27],
                     font="Ubuntu Bold",
-                    background = colors[0],
-                    padding = 0,
-                    fontsize = 14,
+                    background = colors[18],
+                    padding = 2,
+                    fontsize = 12,
                 ),
                 widget.Cmus(
                     font = "Ubuntu Bold",
                     fontsize = "14",
-                    foreground = colors[2],
-                    background = colors[0],
+                    foreground = colors[28],
+                    background = colors[18],
                     padding = 12,
                     play_color = colors[2],
                     noplay_color = colors[6],
                     update_interval = 0.1,
                     ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(18, 19),
+                widget.CurrentLayout(
+                    font = "Ubuntu Bold",
+                    background = colors[19],
+                    foreground = colors[27],
+                    padding = 2,
+                    fontsize = 14,
+                ),
                 widget.TextBox(
-                    text = "",
+                    text = "舘",
                     font = "FontAwesome",
                     fontsize = 20,
                     padding = 10,
-                    background = colors[1],
-                    mouse_callbacks = {'Button1': lazy.spawn('firefox   crypto.com/price')}
-                ),
-                widget.CryptoTicker(
-                    font = "Ubuntu Bold",
-                    background = colors[1],
-                    padding = 2,
-                    fontsize = 14,
-                    format = '{symbol}{amount:.2f}'
+                    background = colors[19],
+                    mouse_callbacks = {'Button1': lazy.next_layout()},
+                    foreground = colors[27],
                 ),
                 
                 widget.Sep(
                     linewidth = 0,
                     padding = 10,
-                    background = colors[1],
+                    background = colors[19],
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(19, 17),
                 widget.TextBox(
                     text = "墳",
                     font = "FontAwesome",
                     fontsize = 16,
                     padding = 8,
-                    background = colors[0],
+                    background = colors[17],
+                    foreground = colors[27],
                     mouse_callbacks = {'Button1': lazy.spawn('pavucontrol')}
                 ),
                 widget.PulseVolume(
                     font = "Ubuntu Bold",
-                    background = colors[0],
+                    background = colors[17],
+                    foreground = colors[27],
                     padding = 0,
                     device = 'ALC236 Analog',
                     fontsize = 14,
@@ -456,36 +499,39 @@ screens = [
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    background = colors[0],
+                    background = colors[17],
                 ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(17, 23),
                 widget.TextBox(
                     text = '',
                     font = "FontAwesome",
                     padding = 10,
                     fontsize = 20,
-                    background = colors[1],
+                    background = colors[23],
+                    foreground = colors[27],
                     mouse_callbacks = {'Button1': lazy.spawn('Thunar')}
                 ),
                 widget.DF(
                     font = "Ubuntu Bold",
                     visible_on_warn = False,
                     format = '{uf}{m} - {r:.0f}%',
-                    background = colors[1],
+                    background = colors[23],
+                    foreground = colors[27],
                     fontsize = 14,
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    background = colors[1],
+                    background = colors[23],
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(23, 20),
                 widget.TextBox(
                     text = "",
                     font = "FontAwesome",
                     fontsize = 20,
                     padding = 10,
-                    background = colors[0],
+                    background = colors[20],
+                    foreground = colors[27],
                     mouse_callbacks = {'Button1': lazy.spawn('firefox   https://www.accuweather.com/en/ro/beclean/272299/current-weather/272299')}
                 ),
                 widget.OpenWeather(
@@ -493,36 +539,37 @@ screens = [
                     cityid = 685204,
                     format = '{main_temp} °{units_temperature}',
                     update_interval = "600",
-                    background = colors[0],
+                    background = colors[20],
+                    foreground = colors[27],
                     fontsize = 14
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 10,
-                    background = colors[0],
+                    background = colors[20],
                 ),
-                unicode_arrow_widget(0, 1),
+                unicode_arrow_widget(20, 18),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
-                    foreground = colors[2],
-                    background = colors[1],
+                    foreground = colors[27],
+                    background = colors[18],
                     padding = 6,
                     fontsize = 14,
                 ),
                 widget.Battery(
                     font = "Ubuntu Bold",
-                    foreground = colors[2],
-                    background = colors[1],
+                    foreground = colors[27],
+                    background = colors[18],
                     update_interval = 60,
                     format = '{percent:2.0%}  ',
                     fontsize = 14
                 ),
-                unicode_arrow_widget(1, 0),
+                unicode_arrow_widget(18, 0),
                 widget.TextBox(
                     font = "FontAwesome",
                     text = "",
-                    foreground = colors[2],
+                    foreground = colors[27],
                     background = colors[0],
                     padding = 6,
                     fontsize = 20,                    
@@ -532,14 +579,28 @@ screens = [
                     font = "Ubuntu Bold",
                     format="%A, %B %d - %H:%M:%S ",
                     background = colors[0],
-                    foreground = colors[2],
+                    foreground = colors[27],
                     padding=6,
                     fontsize = 14,
+                ),
+                unicode_arrow_widget(0, 17),
+                widget.Systray(
+                    background = colors[17],
+                    padding=6,
+                ),
+                widget.QuickExit(
+                    fontsize = 14,
+                    font = "FontAwesome",
+                    default_text = "",
+                    background = colors[17],
+                    foreground = 'ffffff',
+                    padding=12,
+                    countdown_format = '[ {} ]'
                 ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 12,
-                    background = colors[0],
+                    background = colors[17],
                 ),
             ],
             24,
